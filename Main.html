@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Projects - Eyes of Midnight Sun</title>
+  <style>
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #005580;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #005580;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin-top: 20px;
+    }
+
+    /* Vote system styles */
+    #voteSection {
+      text-align: center;
+      background-color: #f0f0f0;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .candidate {
+      margin-bottom: 10px;
+    }
+
+    .candidate input {
+      margin-right: 10px;
+    }
+
+    .candidate button {
+      background-color: #005580;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .candidate button:hover {
+      background-color: #003366;
+    }
+
+    /* Vote results styles */
+    #voteResults {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #voteResults h3 {
+      margin-bottom: 10px;
+    }
+
+    #voteResults p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Website of Eyes of Midnight Sun</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <h1>Our Goals!</h1>
+  <ol type="I">
+    <li>Let You Do Work In Class If Little</li>
+    <li>Let You Submit Notebook One Day Later</li>
+    <li>Won't Tell Anything About You</li> 
+    <li>Won't Let Anyone Say Bad About You</li>
+    <li>Respect And Treat Everyone Equally</li>
+  </ol>
+  <h2>Our Pamphlet</h2>
+  <img src="D:\Elections\Codes\pamplet.png" alt="Our Pamphlet" height="320" width="640">
+  <br><br>
+  <strong><p>The Meaning of this Pamphlet is to make you know about that we are Indians and not Himachalites or others.</p></strong>
+  <br><br>
+  <h2>Our Election Symbol</h2>
+  <img src="D:\Elections\Codes\download (1).jpeg" alt="Our Election Symbol" height="320" width="640">
+  <br><br>
+  <strong><p>The Meaning of this Symbol or Eyes is that we have an eye on everyone, and everyone is equal in our eyes.</p></strong>
+
+  <footer>
+    <p>Website created for Eyes of Midnight Sun. All rights reserved.</p>
+  </footer>
+
+  <!-- Vote System Section -->
+  <div id="voteSection">
+    <h2>Vote for Leadership Positions</h2>
+    <div class="candidate">
+      <input type="radio" name="vote" value="president"> Me for President
+      <button type="button" onclick="vote('president')">Vote</button>
+      <span id="presidentVotes">0 votes</span>
+    </div>
+    <div class="candidate">
+      <input type="radio" name="vote" value="vice_president"> Me for Vice President
+      <button type="button" onclick="vote('vice_president')">Vote</button>
+      <span id="vicePresidentVotes">0 votes</span>
+    </div>
+    <div class="candidate">
+      <input type="radio" name="vote" value="secretary"> Me for Secretary
+      <button type="button" onclick="vote('secretary')">Vote</button>
+      <span id="secretaryVotes">0 votes</span>
+    </div>
+    <div id="voteResults"></div>
+  </div>
+
+  <script>
+    function vote(position) {
+      const prevVotes = localStorage.getItem(position) || 0;
+      const newVotes = parseInt(prevVotes) + 1;
+      localStorage.setItem(position, newVotes);
+      updateVoteResults();
+      alert('Thank you for voting!');
+      document.querySelector('input[name="vote"]:checked').checked = false; // Uncheck the radio button after voting
+    }
+
+    function updateVoteResults() {
+      const presidentVotes = localStorage.getItem('president') || 0;
+      const vicePresidentVotes = localStorage.getItem('vice_president') || 0;
+      const secretaryVotes = localStorage.getItem('secretary') || 0;
+
+      document.getElementById('presidentVotes').textContent = `${presidentVotes} votes`;
+      document.getElementById('vicePresidentVotes').textContent = `${vicePresidentVotes} votes`;
+      document.getElementById('secretaryVotes').textContent = `${secretaryVotes} votes`;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      updateVoteResults();
+    });
+  </script>
+</body>
+</html>
