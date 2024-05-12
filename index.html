@@ -56,6 +56,9 @@
 
     .candidate {
       margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .candidate input {
@@ -69,6 +72,12 @@
       padding: 5px 10px;
       border-radius: 3px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .candidate button:disabled {
+      background-color: #999; /* Disabled button color */
+      cursor: not-allowed;
     }
 
     .candidate button:hover {
@@ -152,7 +161,13 @@
       localStorage.setItem(position, newVotes);
       updateVoteResults();
       alert('Thank you for voting!');
-      document.querySelector('input[name="vote"]:checked').checked = false; // Uncheck the radio button after voting
+      disableVoteButtons();
+    }
+
+    function disableVoteButtons() {
+      document.querySelectorAll('.candidate button').forEach(btn => {
+        btn.disabled = true;
+      });
     }
 
     function updateVoteResults() {
